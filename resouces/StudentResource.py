@@ -1,16 +1,20 @@
 from datetime import datetime
 
+import jwt
+from flask import request
 from flask_restful import Resource, reqparse
 
+from common.api_tools import token_required
 from entity.Student import Student
 from resouces import api
 from service.StudentService import StudentService
-
+from common.constants import JWT_SECRET_KEY
 
 class StudentResource(Resource):
     student_service = StudentService()
 
     # 获取服务器资源
+    @token_required()
     def get(self, student_id):
         student = self.student_service.get_student_by_id(student_id)
         if student:

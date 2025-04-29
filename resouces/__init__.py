@@ -15,3 +15,4 @@ db = SQLAlchemy(app)
 
 
 from resouces import StudentResource
+from resouces import UserResource
